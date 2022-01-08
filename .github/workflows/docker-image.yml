@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup juste the applicattionExample folder
-      working-directory: ./app
-      run: cp .applicattionExample/ .
+      #working-directory: ./app
+      run: ls
     #- name: Build the Docker image
     #  run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
