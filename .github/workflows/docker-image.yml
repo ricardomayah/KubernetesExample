@@ -17,3 +17,6 @@ jobs:
     - name: Build the Docker backend image
       working-directory: applicationExample/backend
       run: docker build . --file Dockerfile --tag k8s-hands-on-example:$(date +%s)
+    - name: Build the Docker frontend image
+      working-directory: applicationExample/frontend
+      run: docker build . --file Dockerfile --tag frontend-k8s-hands-on:$(date +%s)
