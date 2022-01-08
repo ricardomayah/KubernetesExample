@@ -11,29 +11,3 @@ docker exec -it ec8305c3c4a45ae238f4a57e6f5a767ed8481c7d75a18011fd4bba8fdd25a37c
 docker stop e12dc85f9e33a5ba17638e4c6d0987b59681ceb55879a4382ce960829f06336f
 
 docker rm -fv e12dc85f9e33a5ba17638e4c6d0987b59681ceb55879a4382ce960829f06336f
-
------------------Pasos para el despliegue del backend y el front end--------------
-
-1. Seguir los pasos del archivo Readme en la carpeta backend
-
-2. Si se encuentra en windows correr el comando 
-   kubectl port-forward svc/service-backend-k8s-hands-on 7000:8080
-
-3. Si se encuentra en linux cambiar la url del index.html
-    var url = "http://localhost:7000";
-    por
-    var url = "http://service-backend-k8s-hands-on:8080";
-
-(Nota este cambio se da debido a que el request lo hace el navegador, el servicio que se levanta en el 
-backend es de tipo clusterip y solo es reconocido dentro del cluster. Al estar en windows no podemos acceder directamente a la IP o 
-al dns service-backend-k8s-hands-on por lo que se crear un portforward para ello)
-
-4. Seguir los pasos del Readme en la carpeta frontend
-
-5. Verificar la IP de la maquina con ipconfig 
-
-6. Verificar el puerto asignado al nodeport con el comando
-
-    kubectl get svc
-
-7. Acceder: ejemplo http://192.168.0.111:30389/
