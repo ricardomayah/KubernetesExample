@@ -1,0 +1,5 @@
+1. se debe de crear la imagen de docker con el comando
+    docker build -t frontend-k8s-hands-on:v1 -f .\Dockerfile .
+
+2. Crear los recuros en kubernetes con el comando
+    kubectl apply -f frontend.yaml

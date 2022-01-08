@@ -1,0 +1,19 @@
+<div id="id01"></div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+//usando porforward de 7000 a 8080, debido a que el servico redirige del 8080 al 9090
+// sin embargo como se esta usando windows no puedo acceder directamente al ip del SERVICIO clusterIP
+// por lo que se crea un portforward del localhost 7000 al puerto 8080
+var url = "http://localhost:7000";
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var resp = JSON.parse(this.responseText);
+        document.getElementById("id01").innerHTML = "<h2>La hora es "+ resp.time+"</h2>" ;
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+</script>

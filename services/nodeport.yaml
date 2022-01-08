@@ -1,0 +1,57 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  deployment-test
+  labels:
+    app:  deploymentfront
+# Esto es el REPLICA SET
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginxpod
+  #strategy:
+  #  rollingUpdate:
+  #    maxSurge: 25%
+  #    maxUnavailable: 25%
+  #  type: RollingUpdate
+
+  # Esto es el POD
+  template:
+    metadata:
+      labels:
+        app: nginxpod
+
+  # Esto es o son los CONTAINERS
+    spec:
+      containers:
+      - name:  nginxcontainer
+        image: nginx:alpine
+        ports:
+          - containerPort: 80
+---
+
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: servicetest
+  namespace: default
+  labels:
+    app: servicesfront
+spec:
+  selector:
+    app: nginxpod # Selector para los pods
+  type: NodePort
+  ports:
+  - name: myjob
+    protocol: TCP
+    port: 8080
+    targetPort: 80
+---
+
+#Con este tipo de servicio, podemos acceder a nuestros pods desde fuera del nodo 
+# desde el puerto externo que nos provea el servicio (no el puerto 8080 para este ejemplo) (localhost:32072)
+# este tipo de servicio por debajo crea un servicio de tipo ClusterIP Y ABRE UN PUERTO en el nodo
+# para poder acceder desde fuera de el

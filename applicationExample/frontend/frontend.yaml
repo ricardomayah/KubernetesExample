@@ -1,0 +1,51 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  deployment-frontend-k8s-hands-on
+  labels:
+    app:  deployment-frontend-k8s-hands-on
+# Esto es el REPLICA SET
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend-k8s-hands-on
+  #strategy:
+  #  rollingUpdate:
+  #    maxSurge: 25%
+  #    maxUnavailable: 25%
+  #  type: RollingUpdate
+
+  # Esto es el POD
+  template:
+    metadata:
+      labels:
+        app: frontend-k8s-hands-on
+
+  # Esto es o son los CONTAINERS
+    spec:
+      containers:
+      - name:  container-frontend-k8s-hands-on
+        image: frontend-k8s-hands-on:v1
+        imagePullPolicy: IfNotPresent
+
+---
+
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-frontend-k8s-hands-on
+  namespace: default
+  labels:
+    app: service-frontend-k8s-hands-on
+spec:
+  selector:
+    app: frontend-k8s-hands-on # Selector para los pods
+  type: NodePort
+  #type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 80

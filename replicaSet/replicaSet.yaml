@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-test
+  labels:
+    app: rs-test
+spec:
+  replicas: 2
+  selector:
+    # seleccion de los pods a manejar lo hace por labels
+    matchLabels:
+      app: pod-label
+  template:
+    metadata:
+      labels:
+        app: pod-label
+    spec:
+      containers:
+        - name: container1
+          image: python:3.7-alpine
+          command: ['sh','-c','echo contenedor1 > index.html && python -m http.server 8081']
+
+# Problema con los resplica sets es que si se realiza un cambio en los pods, como la version de la imagen
+# o se elimina un contenedor, los cambios no se veran reflejados ya que el replica set solo se encarga de
+# mantener las replicas del pod

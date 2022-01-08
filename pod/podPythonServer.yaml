@@ -1,0 +1,17 @@
+# https://kubernetes.io/docs/concepts/workloads/pods/
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "multiplepythonpod"
+spec:
+  containers:
+  - name: container1
+    image: python:3.6-alpine
+    command: ['sh','-c','echo contenedor1 > index.html && python -m http.server 8081']
+  - name: container2
+    image: python:3.6-alpine
+    command: ['sh','-c','echo contenedor2 > index.html && python -m http.server 8082']
+
+    
+# Problema con los pods es que no se auto sanan es decir no son selfhealing. Tampoco se
+# pueden realizar cambios una vez se encuentran ejecutandose

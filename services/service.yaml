@@ -1,0 +1,55 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  deployment-test
+  labels:
+    app:  deploymentfront
+# Esto es el REPLICA SET
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginxpod
+  #strategy:
+  #  rollingUpdate:
+  #    maxSurge: 25%
+  #    maxUnavailable: 25%
+  #  type: RollingUpdate
+
+  # Esto es el POD
+  template:
+    metadata:
+      labels:
+        app: nginxpod
+
+  # Esto es o son los CONTAINERS
+    spec:
+      containers:
+      - name:  nginxcontainer
+        image: nginx:alpine
+        ports:
+          - containerPort: 80
+---
+
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: servicetest
+  namespace: default
+  labels:
+    app: servicesfront
+spec:
+  selector:
+    app: nginxpod # Selector para los pods
+  type: ClusterIP
+  ports:
+  - name: myjob
+    protocol: TCP
+    port: 8080
+    targetPort: 80
+---
+
+# Con el tipo de servicio ClusterIP, nos permite comunicar pods dentro del
+# mismo nodo, mas no desde fuera de el, para esto podemos usar el tipo NodePort

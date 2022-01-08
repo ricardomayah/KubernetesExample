@@ -1,0 +1,28 @@
+# https://kubernetes.io/docs/concepts/workloads/pods/
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "podtest"
+  namespace: default
+  labels:
+    app: "front"
+    env: dev
+spec:
+  containers:
+  - name: myapp
+    image: nginx:alpine
+---
+
+# https://kubernetes.io/docs/concepts/workloads/pods/
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "podtest2"
+  namespace: default
+  labels:
+    app: "back"
+    env: dev
+spec:
+  containers:
+  - name: myapp
+    image: nginx:alpine
