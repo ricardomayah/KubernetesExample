@@ -49,10 +49,12 @@ jobs:
     - name: Download image
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
-      run: docker pull $DOCKER_USER/k8s-hands-on-example:latest
+      run: |
+        docker pull $DOCKER_USER/k8s-hands-on-example:latest
+        docker pull $DOCKER_USER/frontend-k8s-hands-on:latest
 
-    #- name: 'Deploy to Azure WebApp'
-     # run : ls
+    - name: 'Run image'
+      run : ls
       #id: deploy-to-webapp 
       #uses: azure/webapps-deploy@v2
       #with:
