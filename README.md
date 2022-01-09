@@ -1,6 +1,11 @@
 ![example workflow](https://github.com/ricardomayah/KubernetesExample/actions/workflows/go.yml/badge.svg)
 ![example workflow](https://github.com/ricardomayah/KubernetesExample/actions/workflows/docker-image.yml/badge.svg)
 # KubernetesExample
+
+Se tiene 2 pipelines de ejemplo usando github actions:
+1. El primero no utiliza docker y realiza el build y deploy con la configuración para un proyecto en go.
+2. El segundo utiliza las imagenes de docker para el push y pull correspondiente de las imagenes.
+
 -----------------Pasos para el despliegue del backend y el front end del app application Example--------------
 
 1. Seguir los pasos del archivo Readme en la carpeta backend
