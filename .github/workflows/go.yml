@@ -27,3 +27,10 @@ jobs:
     - name: Test
       working-directory: applicationExample/backend/src
       run: go test -v main.go
+    
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with: 
+        name: assets-for-download
+        path: applicationExample/backend/src
+    
