@@ -54,6 +54,7 @@ jobs:
         docker pull $DOCKER_USER/frontend-k8s-hands-on:latest
 
     - name: 'Run image'
+      run : ls
       #env:
       #  DOCKER_USER: ${{ secrets.DOCKER_USER }}
       #run : docker run --rm $DOCKER_USER/k8s-hands-on-example:latest
