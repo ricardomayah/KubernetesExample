@@ -20,11 +20,9 @@ jobs:
     
     - name: Build
       working-directory: applicationExample/backend/src
-      run: go build -v -o mainApp main.go
-      
-    - name: ls
-      working-directory: applicationExample/backend/src
-      run: ls
+      run: |
+        go build -v -o mainApp main.go
+        ls
 
     #- name: Test
     #  run: go test -v ./...
