@@ -14,9 +14,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Docker login
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      run: docker login -u $DOCKER_USER -p $DOCKER_TOKEN
+    
     - name: Build the Docker backend image
       working-directory: applicationExample/backend
       run: docker build . --file Dockerfile --tag k8s-hands-on-example:$(date +%s)
+      
     - name: Build the Docker frontend image
       working-directory: applicationExample/frontend
       run: docker build . --file Dockerfile --tag frontend-k8s-hands-on:$(date +%s)
