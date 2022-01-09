@@ -1,3 +1,5 @@
+![example workflow](https://github.com/ricardomayah/KubernetesExample/actions/workflows/go.yml/badge.svg)
+![example workflow](https://github.com/ricardomayah/KubernetesExample/actions/workflows/docker-image.yml/badge.svg)
 # KubernetesExample
 -----------------Pasos para el despliegue del backend y el front end del app application Example--------------
 
