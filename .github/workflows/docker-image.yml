@@ -31,6 +31,10 @@ jobs:
       run: docker build . --file Dockerfile --tag frontend-k8s-hands-on:latest
       
     - name: Push docker images
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
       run : |
+        docker tag k8s-hands-on-example:latest $DOCKER_USER/k8s-hands-on-example:latest
+        docker tag frontend-k8s-hands-on:latest $DOCKER_USER/frontend-k8s-hands-on:latest
         docker push k8s-hands-on-example:latest
         docker push frontend-k8s-hands-on:latest
