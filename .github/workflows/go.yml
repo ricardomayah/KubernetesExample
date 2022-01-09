@@ -25,4 +25,5 @@ jobs:
         ls
 
     - name: Test
+      working-directory: applicationExample/backend/src
       run: go test -v main.go
