@@ -32,7 +32,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: assets-for-download
-        path: applicationExample/backend/src/main.go
+        path: applicationExample/backend/src/mainApp
         
   deploy:
     runs-on: ubuntu-latest
