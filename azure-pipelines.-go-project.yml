@@ -32,8 +32,7 @@ steps:
     includeRootFolder: False
     archiveFile: example
 
-- task: PublishPipelineArtifact@1
+- task: PublishBuildArtifacts@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifactType: 'pipeline'
+    pathToPublish: '$(Pipeline.Workspace)'
     artifactName: 'drop'
