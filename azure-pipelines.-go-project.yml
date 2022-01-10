@@ -9,26 +9,13 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-variables:
-  GOBIN:  '$(GOPATH)/bin' # Go binaries path
-  GOROOT: '/usr/local/go1.11' # Go installation path
-  GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
-  modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
-
-steps:
-- script: |
-    mkdir -p '$(GOBIN)'
-    mkdir -p '$(GOPATH)/pkg'
-    mkdir -p '$(modulePath)'
-    shopt -s extglob
-    shopt -s dotglob
-    mv !(gopath) '$(modulePath)'
-    echo '##vso[task.prependpath]$(GOBIN)'
-    echo '##vso[task.prependpath]$(GOROOT)/bin'
-  displayName: 'Set up the Go workspace'
+steps: 
+- task: GoTool@0
+  inputs:
+    version: '1.13.5'
 
 - script: |
-    go version
-    
+    ls
+    ls
   workingDirectory: '$(modulePath)/applicationExample/backend/src'
   displayName: 'Get dependencies, then build'
