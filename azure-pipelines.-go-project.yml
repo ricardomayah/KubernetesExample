@@ -17,5 +17,5 @@ steps:
 - script: |
     ls
     ls
-  workingDirectory: '$(modulePath)/applicationExample/backend/src'
+  workingDirectory: '$(System.DefaultWorkingDirectory)'
   displayName: 'Get dependencies, then build'
