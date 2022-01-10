@@ -28,6 +28,6 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Archive files'
   inputs:
-    rootFolderOrFile: '$(Build.Repository.LocalPath)'
+    rootFolderOrFile:  '$(System.DefaultWorkingDirectory)/applicationExample/backend/src'
     includeRootFolder: False
     archiveFile: example
