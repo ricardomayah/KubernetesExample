@@ -29,5 +29,5 @@ steps:
 
 - script: |
     ls
-  workingDirectory: '$(modulePath)/applicationExample'
+  workingDirectory: '$(modulePath)/applicationExample/backend/src'
   displayName: 'Get dependencies, then build'
