@@ -1,6 +1,6 @@
 # Go
 # Build your Go project.
-# Add steps that test, save build artifacts, deploy, and more:
+# Add steps that test, save build artifacts, deploy, and more:1
 # https://docs.microsoft.com/azure/devops/pipelines/languages/go
 
 trigger:
