@@ -34,10 +34,10 @@ al dns service-backend-k8s-hands-on por lo que se crea un portforward para ello)
 
 
 
-#Este comando crea un contenedor de docker con la imagen de go 
-# y se crea un bind mount desde la ruta en donde se corre el comando
-# para este ejemplo es: F:\Cursos_siigo\Kubernetes\applicationExample\backend\src
-# PWD hace referencia a la ruta antes mencionada y goApp es el directorio en el contenedor
-# Nota: este comando correrlo en powershell ya que en git bash da problemas al montar la ruta relativa usando PWD
+Este comando crea un contenedor de docker con la imagen de go 
+y se crea un bind mount desde la ruta en donde se corre el comando
+para este ejemplo es: F:\Cursos_siigo\Kubernetes\applicationExample\backend\src
+ PWD hace referencia a la ruta antes mencionada y goApp es el directorio en el contenedor
+Nota: este comando correrlo en powershell ya que en git bash da problemas al montar la ruta relativa usando PWD
 
 docker run --rm -dit -w /goApp -p 8716:9090 -v $PWD/:/goApp --name golang golang bash
