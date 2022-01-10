@@ -14,9 +14,10 @@ steps:
   inputs:
     version: '1.13.5'
 - task: Go@0
+  displayName: 'go build'
   inputs:
     command: 'build'
-    arguments: '-o mainApp mian.go'
+    arguments: '-o mainApp main.go'
     workingDirectory: '$(System.DefaultWorkingDirectory)/applicationExample/backend/src'
     
 - script: |
