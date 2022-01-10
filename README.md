@@ -1,5 +1,6 @@
 ![example workflow](https://github.com/ricardomayah/KubernetesExample/actions/workflows/go.yml/badge.svg)
 ![example workflow](https://github.com/ricardomayah/KubernetesExample/actions/workflows/docker-image.yml/badge.svg)
+[![Build Status](https://rmaya.visualstudio.com/TestProject/_apis/build/status/ricardomayah.KubernetesExample?branchName=master)](https://rmaya.visualstudio.com/TestProject/_build/latest?definitionId=4&branchName=master)
 # KubernetesExample
 
 Se tiene 2 pipelines de ejemplo usando github actions:
