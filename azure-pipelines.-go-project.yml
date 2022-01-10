@@ -30,3 +30,4 @@ steps:
   inputs:
     rootFolderOrFile: '$(Build.Repository.LocalPath)'
     includeRootFolder: False
+    archiveFile: example
