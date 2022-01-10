@@ -24,3 +24,9 @@ steps:
     ls
   workingDirectory: '$(System.DefaultWorkingDirectory)/applicationExample/backend/src'
   displayName: 'Get dependencies, then build'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
+  inputs:
+    rootFolderOrFile: '$(Build.Repository.LocalPath)'
+    includeRootFolder: False
