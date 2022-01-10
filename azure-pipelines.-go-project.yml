@@ -16,7 +16,7 @@ steps:
 - task: Go@0
   inputs:
     command: 'build'
-    arguments: '-o mainApp"'
+    arguments: '-o mainApp mian.go'
     workingDirectory: '$(System.DefaultWorkingDirectory)/applicationExample/backend/src'
     
 - script: |
