@@ -19,18 +19,6 @@ steps:
     command: 'build'
     arguments: '-v -o mainApp main.go'
     workingDirectory: '$(System.DefaultWorkingDirectory)/applicationExample/backend/src'
-    
-- script: |
-    ls
-  workingDirectory: '$(System.DefaultWorkingDirectory)/applicationExample/backend/src'
-  displayName: 'Get dependencies, then build'
-
-- task: ArchiveFiles@2
-  displayName: 'Archive files'
-  inputs:
-    rootFolderOrFile:  '$(System.DefaultWorkingDirectory)/applicationExample/backend/src'
-    includeRootFolder: False
-    archiveFile: example
 
 - task: PublishBuildArtifacts@1
   inputs:
