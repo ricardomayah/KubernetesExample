@@ -30,6 +30,7 @@ stages:
               docker tag frontend-k8s-hands-on:latestAzure $(DOCKER_USER)/frontend-k8s-hands-on:latestAzure
               docker push $(DOCKER_USER)/k8s-hands-on-example:latestAzure
               docker push $(DOCKER_USER)/frontend-k8s-hands-on:latestAzure
+            displayName: "Push images"
   
   - stage: deploy
     dependsOn: docker
