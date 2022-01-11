@@ -16,6 +16,9 @@ stages:
         steps:
           - bash: echo $(DOCKER_TOKEN) | docker login -u $(DOCKER_USER) --password-stdin
             displayName: "Docker login"
+          
+          - bash: ls
+            workingDirectory:  '$(System.DefaultWorkingDirectory)/applicationExample/backend/src'
   
   - stage: deploy
     dependsOn: docker
