@@ -17,8 +17,19 @@ stages:
           - bash: echo $(DOCKER_TOKEN) | docker login -u $(DOCKER_USER) --password-stdin
             displayName: "Docker login"
           
-          - bash: ls
-            workingDirectory:  '$(System.DefaultWorkingDirectory)/applicationExample/backend/src'
+          - bash: docker build . --file Dockerfile --tag k8s-hands-on-example:latestAzure
+            workingDirectory:  '$(System.DefaultWorkingDirectory)/applicationExample/backend'
+            displayName: "Build backend image"
+          
+          - bash: docker build . --file Dockerfile --tag frontend-k8s-hands-on:latestAzure
+            workingDirectory:  '$(System.DefaultWorkingDirectory)/applicationExample/frontend'
+            displayName: "Build frontend image"
+          
+          - bash : |
+              docker tag k8s-hands-on-example:latestAzure $(DOCKER_USER)/k8s-hands-on-example:latestAzure
+              docker tag frontend-k8s-hands-on:latestAzure $(DOCKER_USER)/frontend-k8s-hands-on:latestAzure
+              docker push $(DOCKER_USER)/k8s-hands-on-example:latestAzure
+              docker push $(DOCKER_USER)/frontend-k8s-hands-on:latestAzure
   
   - stage: deploy
     dependsOn: docker
