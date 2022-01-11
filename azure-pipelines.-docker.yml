@@ -49,14 +49,32 @@ stages:
     jobs:
       - job: DeployQA
         steps:
-          - bash: ls 
+          - bash: |
+             docker pull $(DOCKER_USER)/k8s-hands-on-example:latestAzure
+             docker pull $(DOCKER_USER)/frontend-k8s-hands-on:latestAzure
+            displayName: "Pulling Images"
+          
+          - bash: |
+             ls
+#             docker run --rm $(DOCKER_USER)/k8s-hands-on-example:latestAzure
+#             docker run --rm $(DOCKER_USER)/frontend-k8s-hands-on:latestAzure
+            displayName: "Running container"
   
   - stage: DeployProd
-    condition: and( eq(variables.isPrd, true) , succeeded('docker'))
+    condition: and( eq(variables.isProd, true) , succeeded('docker'))
     dependsOn: docker
     pool:
       vmImage: ubuntu-latest
     jobs:
       - job: DeployProd
         steps:
-          - bash: ls 
+          - bash: |
+             docker pull $(DOCKER_USER)/k8s-hands-on-example:latestAzure
+             docker pull $(DOCKER_USER)/frontend-k8s-hands-on:latestAzure
+            displayName: "Pulling Images"
+          
+          - bash: |
+             ls
+#             docker run --rm $(DOCKER_USER)/k8s-hands-on-example:latestAzure
+#             docker run --rm $(DOCKER_USER)/frontend-k8s-hands-on:latestAzure
+            displayName: "Running container"
