@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master , dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ master , dev ]
 
 jobs:
 
@@ -36,8 +36,8 @@ jobs:
       run : |
         docker tag k8s-hands-on-example:latest $DOCKER_USER/k8s-hands-on-example:latest
         docker tag frontend-k8s-hands-on:latest $DOCKER_USER/frontend-k8s-hands-on:latest
-        docker push $DOCKER_USER/k8s-hands-on-example:latest
-        docker push $DOCKER_USER/frontend-k8s-hands-on:latest
+#        docker push $DOCKER_USER/k8s-hands-on-example:latest
+#        docker push $DOCKER_USER/frontend-k8s-hands-on:latest
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -49,9 +49,10 @@ jobs:
     - name: Download image
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
-      run: |
-        docker pull $DOCKER_USER/k8s-hands-on-example:latest
-        docker pull $DOCKER_USER/frontend-k8s-hands-on:latest
+      run : |
+        ls
+#        docker pull $DOCKER_USER/k8s-hands-on-example:latest
+#        docker pull $DOCKER_USER/frontend-k8s-hands-on:latest
 
     - name: 'Run image'
       run : ls
