@@ -42,7 +42,7 @@ stages:
             displayName: "Push images"
   
   - stage: deploy
-    condition: succeeded('docker')
+    condition: and( eq(variables.isProd, true) , succeeded('docker'))
     dependsOn: docker
     pool:
       vmImage: ubuntu-latest
