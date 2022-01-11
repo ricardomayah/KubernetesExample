@@ -47,6 +47,16 @@ stages:
     pool:
       vmImage: ubuntu-latest
     jobs:
-      - job: Deploy
+      - job: DeployQA
+        steps:
+          - bash: ls 
+  
+  - stage: DeployProd
+    condition: and( eq(variables.isPrd, true) , succeeded('docker'))
+    dependsOn: docker
+    pool:
+      vmImage: ubuntu-latest
+    jobs:
+      - job: DeployProd
         steps:
           - bash: ls 
