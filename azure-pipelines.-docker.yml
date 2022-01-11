@@ -15,7 +15,7 @@ variables:
     value: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 stages:
-  - stage: docker
+  - stage: Docker
     pool:
       vmImage: ubuntu-latest
     jobs:
@@ -41,8 +41,8 @@ stages:
               echo $(isProd)
             displayName: "Push images"
   
-  - stage: deploy
-    condition: and( eq(variables.isProd, true) , succeeded('docker'))
+  - stage: Deploy QA
+    condition: and( eq(variables.isQa, true) , succeeded('docker'))
     dependsOn: docker
     pool:
       vmImage: ubuntu-latest
