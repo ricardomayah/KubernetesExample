@@ -41,7 +41,7 @@ stages:
               echo $(isProd)
             displayName: "Push images"
   
-  - stage: Deploy QA
+  - stage: DeployQA
     condition: and( eq(variables.isQa, true) , succeeded('docker'))
     dependsOn: docker
     pool:
