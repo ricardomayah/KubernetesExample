@@ -7,6 +7,13 @@ trigger:
 - dev
 - master
 
+variables:
+  - name: isQa
+    value: $[or( eq(variables['Build.SourceBranch'], 'refs/heads/cicd'), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))]
+
+  - name: isProd
+    value: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+
 stages:
   - stage: docker
     pool:
@@ -30,9 +37,12 @@ stages:
               docker tag frontend-k8s-hands-on:latestAzure $(DOCKER_USER)/frontend-k8s-hands-on:latestAzure
               docker push $(DOCKER_USER)/k8s-hands-on-example:latestAzure
               docker push $(DOCKER_USER)/frontend-k8s-hands-on:latestAzure
+              echo $(isQa)
+              echo $(isProd)
             displayName: "Push images"
   
   - stage: deploy
+    condition: succeeded('docker')
     dependsOn: docker
     pool:
       vmImage: ubuntu-latest
