@@ -16,3 +16,12 @@ stages:
         steps:
           - bash: echo $(DOCKER_USER)
             displayName: "Docker login"
+  
+  - stage: deploy
+    dependsOn: docker
+    pool:
+      vmImage: ubuntu-latest
+    jobs:
+      - job: Deploy
+        steps:
+          - bash: ls 
