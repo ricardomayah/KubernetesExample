@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  dev
+---
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  deployment-backend-k8s-hands-on
+  namespace: dev
+  labels:
+    app:  deployment-backend-k8s-hands-on
+# Esto es el REPLICA SET
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend-k8s-hands-on
+  #strategy:
+  #  rollingUpdate:
+  #    maxSurge: 25%
+  #    maxUnavailable: 25%
+  #  type: RollingUpdate
+
+  # Esto es el POD
+  template:
+    metadata:
+      labels:
+        app: backend-k8s-hands-on
+
+  # Esto es o son los CONTAINERS
+    spec:
+      containers:
+      - name:  container-k8s-hands-on
+        image: k8s-hands-on-example:v2
+        imagePullPolicy: IfNotPresent
+
+---
+
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-backend-k8s-hands-on
+  namespace: dev
+  labels:
+    app: service-backend-k8s-hands-on
+spec:
+  selector:
+    app: backend-k8s-hands-on # Selector para los pods
+  #type: NodePort
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 9090
+      
+
+# El dns que todos los servicios reciben al crearse en un namespace diferente es
+# svcName + namespace + svc.cluster.local
+# service-backend-k8s-hands-on.dev.svc.cluster.local : 8080 (el puerto es como ejemplo para este caso)
+
+
+  
